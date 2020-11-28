@@ -27,11 +27,9 @@ class AddContactActivity : AppCompatActivity() {
             val token = sharePref.getString(Constant.PREF_TOKEN)
             btnAdd.setOnClickListener {
                 if (tieName.text.toString().isNullOrEmpty() ||
-                    tiePhone.text.toString().isNullOrEmpty() ||
-                    tieJob.text.toString().isNullOrEmpty() ||
-                    tieEmail.text.toString().isNullOrEmpty()
+                    tiePhone.text.toString().isNullOrEmpty()
                 ) {
-                    Toast.makeText(this@AddContactActivity, "isi semua kolom", Toast.LENGTH_SHORT)
+                    Toast.makeText(this@AddContactActivity, "nama dan number phone wajib diisi", Toast.LENGTH_SHORT)
                         .show()
                 } else {
                     ApiClient.phoneBookService.getSaveContact(

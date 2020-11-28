@@ -2,10 +2,7 @@ package com.kharozim.phonebookapps.remote
 
 import com.kharozim.phonebookapps.remote.body.BodySignIn
 import com.kharozim.phonebookapps.remote.body.BodySignUp
-import com.kharozim.phonebookapps.remote.response.ResponseGetAllContact
-import com.kharozim.phonebookapps.remote.response.ResponseSaveContact
-import com.kharozim.phonebookapps.remote.response.ResponseSignIn
-import com.kharozim.phonebookapps.remote.response.ResponseSignUp
+import com.kharozim.phonebookapps.remote.response.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -28,9 +25,9 @@ interface PhoneBookService {
         @Field("phone")
         phone: String,
         @Field("job")
-        job: String,
+        job: String = "",
         @Field("email")
-        email: String
+        email: String = ""
     ): Call<ResponseSaveContact>
 
     @GET("api/v1/contacts")
@@ -46,6 +43,6 @@ interface PhoneBookService {
         token: String,
         @Path("id")
         id : Int
-    ) : Call<ResponseGetAllContact>
+    ) : Call<ResponseGetDelete>
 
 }
