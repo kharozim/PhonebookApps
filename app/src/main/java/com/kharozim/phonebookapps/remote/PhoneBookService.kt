@@ -3,6 +3,7 @@ package com.kharozim.phonebookapps.remote
 import com.kharozim.phonebookapps.remote.body.BodySignIn
 import com.kharozim.phonebookapps.remote.body.BodySignUp
 import com.kharozim.phonebookapps.remote.response.ResponseGetAllContact
+import com.kharozim.phonebookapps.remote.response.ResponseSaveContact
 import com.kharozim.phonebookapps.remote.response.ResponseSignIn
 import com.kharozim.phonebookapps.remote.response.ResponseSignUp
 import retrofit2.Call
@@ -16,19 +17,21 @@ interface PhoneBookService {
     @POST("api/v1/signup")
     fun getSignUp(@Body bodySignUp: BodySignUp): Call<ResponseSignUp>
 
+
+    @FormUrlEncoded
     @POST("api/v1/contacts")
     fun getSaveContact(
         @Header("Authorization")
         token: String,
+        @Field("name")
+        name : String,
         @Field("phone")
         phone: String,
         @Field("job")
         job: String,
-        @Field("company")
-        company: String,
         @Field("email")
         email: String
-    ): Call<ResponseSignUp>
+    ): Call<ResponseSaveContact>
 
     @GET("api/v1/contacts")
     fun getAllContact(

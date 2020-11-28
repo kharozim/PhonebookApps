@@ -1,10 +1,9 @@
 package com.kharozim.phonebookapps.views
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.kharozim.phonebookapps.databinding.ActivityRegisterBinding
 import com.kharozim.phonebookapps.helper.Constant
 import com.kharozim.phonebookapps.helper.PreferencesHelper
