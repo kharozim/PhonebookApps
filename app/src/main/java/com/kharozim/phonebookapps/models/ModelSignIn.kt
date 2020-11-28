@@ -1,9 +1,9 @@
-package com.kharozim.phonebookapps.remote.model
+package com.kharozim.phonebookapps.models
 
 import com.google.gson.annotations.SerializedName
 
 
-data class SignInModel(
+data class ModelSignIn(
 
 	@field:SerializedName("createdAt")
 	val createdAt: String,

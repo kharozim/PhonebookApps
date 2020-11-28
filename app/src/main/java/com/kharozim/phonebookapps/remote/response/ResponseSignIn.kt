@@ -1,16 +1,16 @@
 package com.kharozim.phonebookapps.remote.response
 
 import com.google.gson.annotations.SerializedName
-import com.kharozim.phonebookapps.remote.model.SignInModel
+import com.kharozim.phonebookapps.models.ModelSignIn
 
 data class ResponseSignIn(
 
-	@field:SerializedName("data")
-	val data: SignInModel,
+    @field:SerializedName("data")
+	val data: ModelSignIn,
 
-	@field:SerializedName("message")
+    @field:SerializedName("message")
 	val message: String,
 
-	@field:SerializedName("status")
+    @field:SerializedName("status")
 	val status: Boolean
 )

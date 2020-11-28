@@ -1,8 +1,8 @@
-package com.kharozim.phonebookapps.remote.model
+package com.kharozim.phonebookapps.models
 
 import com.google.gson.annotations.SerializedName
 
-data class GetAllContactModel(
+data class ModelGetAllContact(
 
 	@field:SerializedName("image")
 	val image: String,
