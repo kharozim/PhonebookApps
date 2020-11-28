@@ -80,6 +80,7 @@ class HomeActivity : AppCompatActivity(), ContactAdapter.ListenerContact {
             ) {
                 if (response.isSuccessful) {
                     adapter.deleteContactById(id)
+                    Toast.makeText(this@HomeActivity, response.body()?.data, Toast.LENGTH_SHORT).show()
                 }
             }
 
