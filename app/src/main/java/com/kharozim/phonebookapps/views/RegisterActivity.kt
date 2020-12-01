@@ -17,25 +17,24 @@ import retrofit2.Response
 class RegisterActivity : AppCompatActivity() {
 
     private val binding by lazy { ActivityRegisterBinding.inflate(layoutInflater) }
-    private lateinit var bodySignUp: BodySignUp
     private val sharePrefer by lazy { PreferencesHelper(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         binding.run {
-            bodySignUp = BodySignUp(
-                tieName.text.toString(),
-                tieEmail.text.toString(),
-                tiePassword.text.toString()
-            )
+
             btnLogin.setOnClickListener {
                 startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
                 finish()
             }
             btnRegister.setOnClickListener {
                 ApiClient.phoneBookService.getSignUp(
-                    bodySignUp
+                    BodySignUp(
+                        tieName.text.toString(),
+                        tieEmail.text.toString(),
+                        tiePassword.text.toString()
+                    )
                 ).enqueue(object :
                     Callback<ResponseSignUp> {
                     override fun onResponse(
@@ -48,6 +47,7 @@ class RegisterActivity : AppCompatActivity() {
                                 sharePrefer.put(Constant.PREF_PASSWORD, tiePassword.text.toString())
                                 sharePrefer.put(Constant.PREF_USERNAME, tieName.text.toString())
                                 sharePrefer.put(Constant.PREF_TOKEN, it.data)
+                                sharePrefer.put(Constant.PREF_IS_LOGIN, true)
                                 Toast.makeText(
                                     this@RegisterActivity,
                                     "akun ${tieName.text.toString()} berhasil dibuat",
@@ -73,11 +73,16 @@ class RegisterActivity : AppCompatActivity() {
                     override fun onFailure(call: Call<ResponseSignUp>, t: Throwable) {
                         Toast.makeText(this@RegisterActivity, t.message, Toast.LENGTH_SHORT).show()
                     }
-
                 })
             }
+        }
+    }
 
-
+    override fun onStart() {
+        super.onStart()
+        if (sharePrefer.getBoolean(Constant.PREF_IS_LOGIN) == true) {
+            startActivity(Intent(this, HomeActivity::class.java))
+            finish()
         }
     }
 }

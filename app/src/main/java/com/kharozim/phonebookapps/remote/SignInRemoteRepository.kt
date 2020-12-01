@@ -9,5 +9,4 @@ class SignInRemoteRepository(private val service: PhoneBookService) {
     fun onSignIn(bodySignIn: BodySignIn) : Call<ResponseSignIn>{
         return service.getSignIn(bodySignIn)
     }
-
 }
